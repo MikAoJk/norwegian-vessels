@@ -2,8 +2,9 @@ package no.kartveit.model
 
 
 data class VesselData(
-    val fartoyId: String,
-    val fylkesnummer: String,
-    val kommunenummer: String,
-    val fartoyName: String
+    val vesselId: String,
+    val countyNumber: String,
+    val municipalityNumber: String,
+    val vesselName: String,
+    val municipalityName: String
 )

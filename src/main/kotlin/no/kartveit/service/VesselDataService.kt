@@ -22,10 +22,12 @@ class VesselDataService {
             .filter { !it.getCell(0).stringCellValue.toString().matches(Regex("")) }
             .map { row ->
                 VesselData(
-                    fylkesnummer = row.getCell(1).stringCellValue.toString(),
-                    kommunenummer = row.getCell(3).stringCellValue.toString(),
-                    fartoyId = row.getCell(5).stringCellValue.toString(),
-                    fartoyName = row.getCell(8).stringCellValue.toString(),
+                    countyNumber = row.getCell(1).stringCellValue.toString(),
+                    municipalityNumber = row.getCell(3).stringCellValue.toString(),
+                    vesselId = row.getCell(5).stringCellValue.toString(),
+                    vesselName = row.getCell(8).stringCellValue.toString(),
+                    municipalityName = row.getCell(4).stringCellValue.toString(),
+
                 )
             }
     }
