@@ -28,7 +28,7 @@ Creating a docker image should be as simple as `docker build -t norwegian-vessel
 #### All vessels
 http://localhost:8080/api/allVessels
 #### Vessels by municipality
-http://localhost:8080/api?municipality=AUSTEVOLL
+http://localhost:8080/api?municipality=austevoll
 
 ## Contact
 ### Code/project related questions can be sent to

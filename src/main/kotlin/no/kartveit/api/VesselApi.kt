@@ -12,12 +12,12 @@ fun Routing.registerVessel() {
 
     get("/api") {
         val request = call.request
-        val municipality: String? = request.queryParameters["municipality"]
+        val municipalityUpperCase: String? = request.queryParameters["municipality"]?.toUpperCase()
 
         call.respond(
             MustacheContent(
                 "vessel-data.hbs",
-                mapOf("vessel" to VesselDataService().getVesselData().filter { it.municipalityName == municipality })
+                mapOf("vessel" to VesselDataService().getVesselData().filter { it.municipalityName == municipalityUpperCase })
             )
         )
     }
