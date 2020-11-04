@@ -25,7 +25,10 @@ Creating a docker image should be as simple as `docker build -t norwegian-vessel
 `docker run --rm -it -p 8080:8080 norwegian-vessels`
 
 ### Web site with vessel info is avaliabele at
-http://localhost:8080/vesselData
+#### All vessels
+http://localhost:8080/api/allVessels
+#### Vessels by municipality
+http://localhost:8080/api?municipality=AUSTEVOLL
 
 ## Contact
 ### Code/project related questions can be sent to

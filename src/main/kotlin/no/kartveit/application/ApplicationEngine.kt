@@ -11,13 +11,13 @@ import io.ktor.routing.routing
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
-import no.kartveit.api.registerVesselData
+import no.kartveit.api.registerVessel
 
 
 fun createApplicationEngine(): ApplicationEngine =
     embeddedServer(Netty, 8080) {
         routing {
-            registerVesselData()
+            registerVessel()
         }
         install(Mustache) {
             mustacheFactory = DefaultMustacheFactory("templates/mustache")
