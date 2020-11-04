@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "no.karveit"
@@ -13,6 +15,7 @@ val logstashEncoderVersion = "5.1"
 plugins {
     java
     kotlin("jvm") version "1.4.10"
+    id("com.github.johnrengelman.shadow") version "5.2.0"
 }
 
 repositories {
@@ -37,6 +40,18 @@ dependencies {
 }
 
 tasks {
+
+    withType<Jar> {
+        manifest.attributes["Main-Class"] = "no.kartveit.BootstrapKt"
+    }
+
+    withType<ShadowJar> {
+        transform(ServiceFileTransformer::class.java) {
+            setPath("META-INF/cxf")
+            include("bus-extensions.txt")
+        }
+    }
+
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "14"
     }
