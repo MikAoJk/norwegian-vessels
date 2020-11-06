@@ -1,52 +1,54 @@
 <html>
 <head>
-    <title>
-        Norwegian vessels
-    </title>
+    <title>Norwegian vessels</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
-
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
 
 <body>
-<h1>Here are a list of Norwegian vessels:</h1>
-<table id="vessel" class="display">
-    <thead>
-    <tr>
-        <th>Fartøy ID</th>
-        <th>Fartøynavn</th>
-        <th>Fylke</th>
-        <th>Kommune nr</th>
-        <th>Kommune</th>
-    </tr>
-    <tbody>
-    </thead>
-    {{#vessel}}
+<div class="container">
+    <h1>Here are a list of Norwegian vessels:</h1>
+    <p>Type something in the input field to search the table for Fartøy ID, Fartøynavn and so on:</p>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <br>
+    <table class="table table-bordered table-striped">
+        <thead>
         <tr>
-            <td>{{vesselId}}</td>
-            <td>{{vesselName}}</td>
-            <td>{{countyNumber}}</td>
-            <td>{{municipalityNumber}}</td>
-            <td>{{municipalityName}}</td>
+            <th>Fartøy ID</th>
+            <th>Fartøynavn</th>
+            <th>Fylke</th>
+            <th>Kommune nr</th>
+            <th>Kommune</th>
         </tr>
-    {{/vessel}}
-    </tbody>
-</table>
+        <tbody>
+        </thead>
+        <tbody id="vesselTable">
+        {{#vessel}}
+            <tr>
+                <td>{{vesselId}}</td>
+                <td>{{vesselName}}</td>
+                <td>{{countyNumber}}</td>
+                <td>{{municipalityNumber}}</td>
+                <td>{{municipalityName}}</td>
+            </tr>
+        {{/vessel}}
+        </tbody>
+    </table>
+</div>
 
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#vesselTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
 
 </body>
 
