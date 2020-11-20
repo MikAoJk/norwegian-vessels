@@ -15,7 +15,7 @@ import no.kartveit.api.registerVessel
 
 
 fun createApplicationEngine(): ApplicationEngine =
-    embeddedServer(Netty, 8080) {
+    embeddedServer(Netty, System.getenv("PORT")?.toInt() ?: 8080) {
         routing {
             registerVessel()
         }
