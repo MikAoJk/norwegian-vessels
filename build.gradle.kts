@@ -7,14 +7,14 @@ version = "1.0.0-SNAPSHOT"
 
 val commonsCSVVersion = "1.7"
 val poiVersion = "4.1.1"
-val ktorVersion = "1.4.0"
+val ktorVersion = "1.5.0"
 val logbackVersion = "1.2.3"
 val logstashEncoderVersion = "5.1"
 
 
 plugins {
     java
-    kotlin("jvm") version "1.4.20"
+    kotlin("jvm") version "1.4.21"
     id("com.github.johnrengelman.shadow") version "5.2.0"
 }
 
