@@ -31,7 +31,7 @@ http://localhost:8080/api/allVessels
 http://localhost:8080/api?municipality=austevoll
 
 ## A snapshot of the Web site with vessel info is can be viewd here:
-https://mikaojk.github.io/norwegian-vessels/index.html
+https://mikaojk.github.io/norwegian-vessels/
 
 ## Contact
 ### Code/project related questions can be sent to
