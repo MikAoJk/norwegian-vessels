@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap.min.js"></script>
 </head>
 
 <body>
 <div class="container">
-    <h1>Here are a list of Norwegian vessels:</h1>
-    <p>Type something in the input field to search the table for Fartøy ID, Fartøynavn and so on:</p>
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <h1>Here are a list of Norwegian vessels</h1>
     <br>
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped" id="vessels">
         <thead>
         <tr>
             <th>Fartøy ID</th>
@@ -25,7 +25,6 @@
         </tr>
         <tbody>
         </thead>
-        <tbody id="vesselTable">
         {{#vessel}}
             <tr>
                 <td>{{vesselId}}</td>
@@ -35,19 +34,15 @@
                 <td>{{municipalityName}}</td>
             </tr>
         {{/vessel}}
-        </tbody>
     </table>
 </div>
 
 <script>
-    $(document).ready(function () {
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#vesselTable tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
+    $(document).ready(function() {
+        $('#vessels').dataTable( {
+            "lengthMenu": [[10, 50, 100, 500, -1], [10, 50, 100, 500, "All"]]
+        } );
+    } );
 </script>
 
 </body>
