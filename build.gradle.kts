@@ -3,18 +3,18 @@ import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransf
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "no.karveit"
-version = "1.0.0"
+version = "1.0.1"
 
 val commonsCSVVersion = "1.7"
 val poiVersion = "4.1.1"
-val ktorVersion = "1.6.2"
+val ktorVersion = "1.6.3"
 val logbackVersion = "1.2.3"
 val logstashEncoderVersion = "5.1"
 
 
 plugins {
     java
-    kotlin("jvm") version "1.5.21"
+    kotlin("jvm") version "1.5.31"
     id("com.github.johnrengelman.shadow") version "5.2.0"
 }
 
