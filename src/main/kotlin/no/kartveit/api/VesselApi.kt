@@ -5,6 +5,7 @@ import io.ktor.mustache.MustacheContent
 import io.ktor.response.respond
 import io.ktor.routing.Routing
 import io.ktor.routing.get
+import java.util.Locale
 import no.kartveit.service.VesselDataService
 
 
@@ -12,7 +13,7 @@ fun Routing.registerVessel() {
 
     get("/api") {
         val request = call.request
-        val municipalityUpperCase: String? = request.queryParameters["municipality"]?.toUpperCase()
+        val municipalityUpperCase: String? = request.queryParameters["municipality"]?.uppercase(Locale.getDefault())
 
         call.respond(
             MustacheContent(

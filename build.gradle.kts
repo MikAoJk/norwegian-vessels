@@ -5,26 +5,26 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 group = "no.karveit"
 version = "1.0.1"
 
-val commonsCSVVersion = "1.7"
-val poiVersion = "4.1.1"
+val commonsCSVVersion = "1.8"
+val poiVersion = "5.0.0"
 val ktorVersion = "1.6.3"
-val logbackVersion = "1.2.3"
-val logstashEncoderVersion = "5.1"
+val logbackVersion = "1.2.6"
+val logstashEncoderVersion = "6.6"
+val kotlinVersion = "1.5.31"
 
 
 plugins {
     java
     kotlin("jvm") version "1.5.31"
-    id("com.github.johnrengelman.shadow") version "5.2.0"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
 }
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
 
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-jackson:$ktorVersion")
@@ -53,7 +53,7 @@ tasks {
     }
 
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "14"
+        kotlinOptions.jvmTarget = "16"
     }
 
 }
