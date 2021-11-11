@@ -7,7 +7,7 @@ version = "1.0.1"
 
 val commonsCSVVersion = "1.8"
 val poiVersion = "5.0.0"
-val ktorVersion = "1.6.3"
+val ktorVersion = "1.6.5"
 val logbackVersion = "1.2.6"
 val logstashEncoderVersion = "6.6"
 val kotlinVersion = "1.5.31"
