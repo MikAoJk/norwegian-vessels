@@ -15,7 +15,7 @@ val kotlinVersion = "1.5.31"
 
 plugins {
     java
-    kotlin("jvm") version "1.5.31"
+    kotlin("jvm") version "1.6.0"
     id("com.github.johnrengelman.shadow") version "6.1.0"
 }
 
