@@ -1,4 +1,4 @@
-# norwegian-vessels
+# norwegian-vessels 🚢
 Application testing kotlin and ktor-mustache
 
 ## Technologies used
