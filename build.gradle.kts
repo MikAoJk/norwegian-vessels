@@ -1,22 +1,27 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "no.karveit"
 version = "1.0.1"
 
-val commonsCSVVersion = "1.8"
-val poiVersion = "5.0.0"
-val ktorVersion = "1.6.5"
-val logbackVersion = "1.2.6"
-val logstashEncoderVersion = "6.6"
+
+val jvmTargetVersion = "17"
+
+
+val commonsCSVVersion = "1.9.0"
+val poiVersion = "5.2.2"
+val ktorVersion = "2.0.2"
+val logbackVersion = "1.2.11"
+val logstashEncoderVersion = "7.2"
 val kotlinVersion = "1.5.31"
+
+val junitJupiterVersion = "5.8.2"
 
 
 plugins {
     java
-    kotlin("jvm") version "1.6.0"
-    id("com.github.johnrengelman.shadow") version "6.1.0"
+    kotlin("jvm") version "1.6.21"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 repositories {
@@ -26,9 +31,11 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
 
-    implementation("io.ktor:ktor-server-netty:$ktorVersion")
-    implementation("io.ktor:ktor-jackson:$ktorVersion")
-    implementation("io.ktor:ktor-mustache:$ktorVersion")
+    implementation("io.ktor:ktor-server-cio:$ktorVersion")
+    implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
+    implementation("io.ktor:ktor-server-mustache:$ktorVersion")
+    implementation("io.ktor:ktor-server-status-pages:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-jackson:$ktorVersion")
 
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("net.logstash.logback:logstash-logback-encoder:$logstashEncoderVersion")
@@ -41,19 +48,23 @@ dependencies {
 
 tasks {
 
-    withType<Jar> {
-        manifest.attributes["Main-Class"] = "no.kartveit.BootstrapKt"
+    withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = jvmTargetVersion
     }
 
     withType<ShadowJar> {
-        transform(ServiceFileTransformer::class.java) {
-            setPath("META-INF/cxf")
-            include("bus-extensions.txt")
-        }
+        archiveBaseName.set(project.name)
+        mergeServiceFiles()
+        manifest.attributes["Main-Class"] = "no.kartveit.BootstrapKt"
     }
 
-    withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "16"
+
+    withType<Wrapper> {
+        gradleVersion = "7.4.2"
+    }
+
+    build {
+        dependsOn(shadowJar)
     }
 
 }

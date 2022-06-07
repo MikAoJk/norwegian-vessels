@@ -1,21 +1,20 @@
 package no.kartveit.application
 
 import com.github.mustachejava.DefaultMustacheFactory
-import io.ktor.application.call
-import io.ktor.application.install
-import io.ktor.features.StatusPages
 import io.ktor.http.HttpStatusCode
-import io.ktor.mustache.Mustache
-import io.ktor.response.respond
-import io.ktor.routing.routing
+import io.ktor.server.application.install
+import io.ktor.server.cio.CIO
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
-import io.ktor.server.netty.Netty
+import io.ktor.server.mustache.Mustache
+import io.ktor.server.plugins.statuspages.StatusPages
+import io.ktor.server.response.respond
+import io.ktor.server.routing.routing
 import no.kartveit.api.registerVessel
 
 
 fun createApplicationEngine(): ApplicationEngine =
-    embeddedServer(Netty, System.getenv("PORT")?.toInt() ?: 8080) {
+    embeddedServer(CIO, 8080) {
         routing {
             registerVessel()
         }
@@ -23,7 +22,7 @@ fun createApplicationEngine(): ApplicationEngine =
             mustacheFactory = DefaultMustacheFactory("templates/mustache")
         }
         install(StatusPages) {
-            exception<Throwable> { cause ->
+            exception<Throwable> {  call, cause ->
                 call.respond(HttpStatusCode.InternalServerError, cause.message ?: "Unknown error")
                 throw cause
             }

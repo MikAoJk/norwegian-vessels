@@ -28,7 +28,7 @@ class VesselDataService {
                     vesselName = row.getCell(8).stringCellValue.toString(),
                     municipalityName = row.getCell(4).stringCellValue.toString(),
 
-                )
+                    )
             }
     }
 }

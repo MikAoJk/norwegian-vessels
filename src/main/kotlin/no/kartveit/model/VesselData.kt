@@ -1,6 +1,5 @@
 package no.kartveit.model
 
-
 data class VesselData(
     val vesselId: String,
     val countyNumber: String,
