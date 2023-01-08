@@ -10,7 +10,7 @@ val jvmTargetVersion = "17"
 
 val commonsCSVVersion = "1.9.0"
 val poiVersion = "5.2.2"
-val ktorVersion = "2.0.3"
+val ktorVersion = "2.2.2"
 val logbackVersion = "1.2.11"
 val logstashEncoderVersion = "7.2"
 val kotlinVersion = "1.8.0"
