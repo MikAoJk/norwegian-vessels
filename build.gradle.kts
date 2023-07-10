@@ -10,17 +10,17 @@ val jvmTargetVersion = "17"
 
 val commonsCSVVersion = "1.9.0"
 val poiVersion = "5.2.2"
-val ktorVersion = "2.2.2"
+val ktorVersion = "2.3.2"
 val logbackVersion = "1.2.11"
 val logstashEncoderVersion = "7.2"
-val kotlinVersion = "1.8.0"
+val kotlinVersion = "1.9.0"
 
 val junitJupiterVersion = "5.8.2"
 
 
 plugins {
     java
-    kotlin("jvm") version "1.8.0"
+    kotlin("jvm") version "1.9.0"
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
